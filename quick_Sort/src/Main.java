@@ -8,7 +8,7 @@ public class Main {
             int rand_int = rand.nextInt(99) + 1;
             intArray[index] = rand_int;
         }
-        intArray[4] = 1;
+        intArray[4] = 20;
         for(int num:intArray){
             if(num != intArray[intArray.length - 1])
                 System.out.printf("%s, ",num);
@@ -45,7 +45,7 @@ public class Main {
             System.out.println(arr[index_low] + " " + arr[j]);
             if(arr[index_low] > arr[j]){
                 int index_high = j - 1;
-                for(int x = 0; index_high > 0; index_high--) {
+                for(int x = 0; index_high > i; index_high--) {
                     System.out.println(arr[index_low] + " " + arr[j] + " " + arr[index_high]);
                     if (arr[j] > arr[index_high]) {
                         temp = arr[index_low];
@@ -55,7 +55,8 @@ public class Main {
                         index_high = 0;
                     }
                 }
-                if(index_high == 0){
+                System.out.println(index_high);
+                if(index_high == i){
                     int[] intArray = new int[10];
                     int indexTwo = 0;
                     for(int index = 0; index < intArray.length - 2; index ++){
@@ -68,23 +69,17 @@ public class Main {
                     intArray[intArray.length - 2] = arr[index_low];
                     intArray[intArray.length - 1] = arr[intArray.length - 1];
                     arr = intArray;
+                    index_low--;
+                    i--;
+                    System.out.println(i);
                 }
             }
             printArray(arr);
         }
-        int index = i;
-        temp = arr[index];
-        while(temp == arr[index]){
-            if(arr[index] > arr[j]){
-                arr[index] = arr[j];
-                arr[j] = temp;
-                temp = -1;
-            }
-            else{
-                index++;
-            }
-        }
-
+        temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+        printArray(arr);
     }
 
     static void quickSort(int[] arr, int low, int high){
