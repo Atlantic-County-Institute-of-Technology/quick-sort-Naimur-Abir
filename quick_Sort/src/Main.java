@@ -1,8 +1,8 @@
 import java.util.Random;
 
 public class Main {
-    static int[] intArray = new int[10];
     public static void main(String[] args) {
+        int[] intArray = new int[10];
         for (int index = 0; index < intArray.length; index++) {            //sets all the values in the position list to a random value from 1 to 100 because it doesn't really matter
             Random rand = new Random();
             int rand_int = rand.nextInt(99) + 1;
@@ -44,18 +44,22 @@ public class Main {
                 }
                 System.out.println(index_high);
                 if(index_high == middle){
-                    int[] intArray = new int[10];
-                    int indexTwo = 0;
-                    for(int index = 0; index < intArray.length - 1; index ++){
-                        if(index_low == indexTwo){
-                            indexTwo++;
-                        }
-                        intArray[index] = arr[indexTwo];
-                        indexTwo++;
+                    for(int outer_loop = index_low; outer_loop + 1 > high - 1; outer_loop++){
+                        System.out.println("Outer loop: " + outer_loop);
+                        swap(arr, outer_loop, outer_loop + 1);
                     }
-                    intArray[high - 1] = arr[index_low];
-                    intArray[high] = arr[high];
-                    arr = intArray;
+                    //int[] intArray = new int[10];
+//                    int indexTwo = 0;
+//                    for(int index = 0; index < intArray.length - 1; index ++){
+//                        if(index_low == indexTwo){
+//                            indexTwo++;
+//                        }
+//                        intArray[index] = arr[indexTwo];
+//                        indexTwo++;
+//                    }
+//                    intArray[high - 1] = arr[index_low];
+//                    intArray[high] = arr[high];
+//                    arr = intArray;
                     index_low--;
                     middle--;
                     System.out.println(middle);
@@ -68,7 +72,6 @@ public class Main {
         }
         swap(arr, middle, high);
         printArray(arr);
-        intArray = arr;
         return middle;
     }
 
@@ -82,7 +85,7 @@ public class Main {
         System.out.println((high - low));
         if((high - low) > 1){
             int middle = partition(arr, low, high);
-//            quickSort(arr, middle + 1, high);
+            quickSort(arr, middle + 1, high);
 //            quickSort(arr, low, middle - 1);
         }
     }
