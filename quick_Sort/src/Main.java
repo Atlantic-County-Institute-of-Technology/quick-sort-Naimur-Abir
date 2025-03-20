@@ -16,11 +16,12 @@ public class Main {
                 int rand_int = rand.nextInt(99) + 1;
                 intArray[index] = rand_int;
             }
+            System.out.print("Pre sort: ");
             printArray(intArray);                          //prints the array
-            System.out.println();
 
             quickSort(intArray, 0, intArray.length - 1);   //calls the quick sort function
-            
+
+            System.out.print("Post sort: ");
             printArray(intArray);
             System.out.println();
             running--;
