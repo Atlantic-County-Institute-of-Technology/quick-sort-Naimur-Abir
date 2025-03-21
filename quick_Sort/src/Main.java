@@ -6,11 +6,11 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner intInput = new Scanner(System.in);
-        System.out.print("How many arrays would you like to sort?: ");
-        int running = intInput.nextInt();                //takes the input as an int
-        while (running > 0){                               //runs while running is greater than 0
-            int[] intArray = new int[10];                  //reserves a space in memory for an array of 10 length
+        Scanner input = new Scanner(System.in);
+        System.out.print("How many items would you like to sort?: ");
+        int items = input.nextInt();                //takes the input as an int
+        if (items > 0){                               //runs while running is greater than 0
+            int[] intArray = new int[items];                  //reserves a space in memory for an array of 10 length
             for (int index = 0; index < intArray.length; index++) {            //Sets all the values in the array to random ints from 1 to 100
                 Random rand = new Random();
                 int rand_int = rand.nextInt(99) + 1;
@@ -20,11 +20,18 @@ public class Main {
             printArray(intArray);                          //prints the array
 
             quickSort(intArray, 0, intArray.length - 1);   //calls the quick sort function
-
             System.out.print("Post sort: ");
             printArray(intArray);
             System.out.println();
-            running--;
+        }
+        else{
+            System.out.println("No items in list.");
+        }
+        System.out.println("Keep going?(y/n): ");
+        input = new Scanner(System.in);
+        String str_input = input.next();
+        if(str_input.equals("y")){
+            main(new String[0]);        //a bit inefficient, but I used it because it was easier to check at the end than set up a while loop in the beginning
         }
     }
 
@@ -53,6 +60,14 @@ public class Main {
             middle++;    //if the value of the previous index of the pivot point is less than the index of the high where the pivot number is it adds one to index of the pivot index, or the middle variable
         }
         swap(arr, middle, high);           //swaps the pivot number to it's index, or the "middle" index
+
+        if(high < arr.length - 1){         //checks if the high index is at the end of the array
+            while(arr[high + 1] < arr[high]){   //runs while the index ahead of index high is less than high
+                swap(arr, high + 1, high);    //swaps high and the index front of high then subtracts one from high
+                high--;
+            }
+        }
+
         return middle;   //returns the current index of the pivot number
     }
 
